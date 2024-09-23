@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import ReviewCard from '../components/ReviewCard';  // Import the ReviewCard component
+import ReviewCard from "../components/ReviewCard";
 
 function SingleMovie() {
   const { imdbId } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [reviewBody, setReviewBody] = useState("");  // For new review input
-  const [submittingReview, setSubmittingReview] = useState(false);  // To handle submission loading
+  const [reviewBody, setReviewBody] = useState("");
+  const [submittingReview, setSubmittingReview] = useState(false);
+  const playerRef = useRef(null);
 
-  // Fetch movie data
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -29,23 +29,69 @@ function SingleMovie() {
     fetchMovie();
   }, [imdbId]);
 
-  // Handle review submission
+  const getYouTubeVideoId = (url) => {
+    const urlObj = new URL(url);
+    return urlObj.searchParams.get("v");
+  };
+
+  const loadYouTubePlayer = (videoId) => {
+    new window.YT.Player(playerRef.current, {
+      height: "390",
+      width: "640",
+      videoId: videoId,
+      playerVars: {
+        playsinline: 1,
+      },
+      events: {
+        onReady: (event) => event.target.playVideo(),
+        onStateChange: (event) => {
+          if (event.data === window.YT.PlayerState.PLAYING) {
+            console.log("Video is playing");
+          }
+        },
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (movie && movie.trailerLink) {
+      const videoId = getYouTubeVideoId(movie.trailerLink);
+
+      const onYouTubeIframeAPIReady = () => {
+        loadYouTubePlayer(videoId);
+      };
+
+      const loadYouTubeScript = () => {
+        if (!window.YT) {
+          const tag = document.createElement("script");
+          tag.src = "https://www.youtube.com/iframe_api";
+          const firstScriptTag = document.getElementsByTagName("script")[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          // Attach the global callback to load the player once the script is ready
+          window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+        } else {
+          // If the YouTube API script is already loaded, just initialize the player
+          loadYouTubePlayer(videoId);
+        }
+      };
+
+      loadYouTubeScript();
+    }
+  }, [movie]);
+
   const handleAddReview = async () => {
     if (!reviewBody.trim()) {
-      return;  // Avoid sending empty reviews
+      return;
     }
-
     setSubmittingReview(true);
-
     try {
       await axios.post("http://localhost:8080/api/v1/movies/reviews", {
         reviewBody: reviewBody,
         imdbId: imdbId,
       });
-      setReviewBody("");  // Clear the input field
+      setReviewBody("");
       setSubmittingReview(false);
-
-      // Refetch the movie to update the reviews
       const response = await axios.get(
         `http://localhost:8080/api/v1/movies/${imdbId}`
       );
@@ -83,8 +129,13 @@ function SingleMovie() {
                 <span className="font-semibold">Release Date: </span>
                 <span>{new Date(movie.releaseDate).toDateString()}</span>
               </div>
-
-              {/* Reviews Section */}
+              <div className="my-6">
+                <div
+                  ref={playerRef}
+                  id="player"
+                  className="rounded-md shadow-lg"
+                ></div>
+              </div>
               <div className="text-lg m-4">
                 <p className="font-semibold text-2xl mb-4">Reviews:</p>
                 {movie.reviewIds.length > 0 ? (
@@ -96,9 +147,10 @@ function SingleMovie() {
                 )}
               </div>
 
-              {/* Add New Review */}
               <div className="m-4">
-                <p className="font-semibold text-2xl mb-4 font-Bebas">Add Your Review:</p>
+                <p className="font-semibold text-2xl mb-4 font-Bebas">
+                  Add Your Review:
+                </p>
                 <textarea
                   value={reviewBody}
                   onChange={(e) => setReviewBody(e.target.value)}
@@ -107,13 +159,13 @@ function SingleMovie() {
                   rows={4}
                 />
                 <div className="flex justify-end">
-                    <button
-                      onClick={handleAddReview}
-                      className={`bg-[#FFF078] rounded-md text-xl py-1 px-3 font-bold text-[#FF4191] font-Bebas hover:bg-[#E90074] flex justify-center items-center hover:text-[#FFF078]`}
-                      disabled={submittingReview}
-                    >
-                      {submittingReview ? 'Submitting...' : 'Add Review'}
-                    </button>
+                  <button
+                    onClick={handleAddReview}
+                    className={`bg-[#FFF078] rounded-md text-xl py-1 px-3 font-bold text-[#FF4191] font-Bebas hover:bg-[#E90074] flex justify-center items-center hover:text-[#FFF078]`}
+                    disabled={submittingReview}
+                  >
+                    {submittingReview ? "Submitting..." : "Add Review"}
+                  </button>
                 </div>
               </div>
             </div>
