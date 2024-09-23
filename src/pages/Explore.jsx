@@ -28,7 +28,7 @@ function Explore() {
   return (
     <div className="p-6">
       <div className='flex justify-center items-center'>
-        <h1 className="text-5xl text-[#FF4191]  font-bold mb-4 bg-[#FFF078]">FIND YOUR PICK</h1>
+        <h1 className="text-5xl text-[#FF4191] font-Bebas p-2  font-bold mb-4 bg-[#FFF078]">FIND YOUR PICK</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {data && data.map((movie) => (
