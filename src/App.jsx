@@ -4,7 +4,7 @@ import Layout from './Layout';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Login from './pages/Login';
-
+import SingleMovie from './pages/SingleMovie';
 function App() {
   return (
     <Router>
@@ -14,6 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/movie/:imdbId" element={<SingleMovie />} />
         </Route>
       </Routes>
     </Router>

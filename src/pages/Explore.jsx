@@ -22,12 +22,14 @@ function Explore() {
     fetchData();
   }, []); 
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className='text-white'>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Movies</h1>
+      <div className='flex justify-center items-center'>
+        <h1 className="text-5xl text-[#FF4191]  font-bold mb-4 bg-[#FFF078]">FIND YOUR PICK</h1>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {data && data.map((movie) => (
           <MovieCard
@@ -37,6 +39,7 @@ function Explore() {
             releaseDate={movie.releaseDate} 
             genre={movie.genres} 
             trailerLink={movie.trailerLink}
+            imdbId={movie.imdbId}
           />
         ))}
       </div>

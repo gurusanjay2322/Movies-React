@@ -36,27 +36,29 @@ function Testimonials() {
   const cardColors = ['#1e3d59', '#ff6e40', '#ffcc29', '#2ec4b6', '#00b4d8'];
 
   return (
-    <div className='flex flex-col justify-center items-center h-screen'>
+    <div className='flex flex-col justify-center items-center h-screen '>
       <div className='font-Bebas text-5xl text-[#FF4191] bg-[#FFF078] w-56 text-center items-center'>
         TESTIMONIALS
       </div>
-      <Swiper
-        effect={'cards'}
-        grabCursor={true}
-        modules={[EffectCards]}
-        className="mySwiper"
-      >
-        {testimonialsData.map((testimonial, index) => (
-          <SwiperSlide key={index}>
-            <TestimonialCard
-              Name={testimonial.Name}
-              content={testimonial.content}
-              imgSrc={testimonial.imgSrc}
-              bgColor={cardColors[index % cardColors.length]} // Pass color to TestimonialCard
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className='mt-8'>
+        <Swiper
+          effect={'cards'}
+          grabCursor={true}
+          modules={[EffectCards]}
+          className="mySwiper"
+        >
+          {testimonialsData.map((testimonial, index) => (
+            <SwiperSlide key={index}>
+              <TestimonialCard
+                Name={testimonial.Name}
+                content={testimonial.content}
+                imgSrc={testimonial.imgSrc}
+                bgColor={cardColors[index % cardColors.length]} // Pass color to TestimonialCard
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 }
