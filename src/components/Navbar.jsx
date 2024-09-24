@@ -33,7 +33,7 @@ function Navbar() {
         }`}
       >
         <div className='flex flex-row justify-between items-center p-4 bg-[#FFF078]'>
-          <div>
+          <div className=''>
           <Link
                 to='/'
                 className='cursor-pointer  bg-[#FFF078] text-[#FF4191] text-3xl font-bold font-Bebas'
@@ -45,13 +45,13 @@ function Navbar() {
             <ul className='flex space-x-8 bg-[#FFF078]'>
               <Link
                 to='/'
-                className='cursor-pointer hover:text-blue-500 bg-[#FFF078] text-[#FF4191] text-3xl font-bold font-Bebas'
+                className='cursor-pointer hover:text-black hover:bg-[#FF4191]  bg-[#FFF078] text-[#FF4191] text-3xl font-bold font-Bebas hover:scale-105 transition ease-in-out'
               >
                 Home
               </Link>
               <Link
                 to='/explore'
-                className='cursor-pointer hover:text-blue-500 bg-[#FFF078] text-[#FF4191] text-3xl font-bold font-Bebas'
+                className='cursor-pointer hover:text-black hover:bg-[#FF4191] bg-[#FFF078] text-[#FF4191] text-3xl font-bold font-Bebas hover:scale-105 transition ease-in-out'
               >
                 Explore
               </Link>
@@ -60,12 +60,10 @@ function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Add margin to the content below the navbar */}
       <div
         className={`${
           location.pathname !== '/'
-            ? 'mt-[50px]' // Adjust this value based on your navbar height
+            ? 'mt-[50px]'
             : ''
         }`}
       >

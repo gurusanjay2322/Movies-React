@@ -36,8 +36,8 @@ function SingleMovie() {
 
   const loadYouTubePlayer = (videoId) => {
     new window.YT.Player(playerRef.current, {
-      height: "390",
-      width: "640",
+      // height: "390",
+      // width: "640",
       videoId: videoId,
       playerVars: {
         playsinline: 1,
@@ -68,10 +68,10 @@ function SingleMovie() {
           const firstScriptTag = document.getElementsByTagName("script")[0];
           firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-          // Attach the global callback to load the player once the script is ready
+         
           window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
         } else {
-          // If the YouTube API script is already loaded, just initialize the player
+         
           loadYouTubePlayer(videoId);
         }
       };
@@ -109,16 +109,16 @@ function SingleMovie() {
     <div className="p-6 text-white">
       {movie && (
         <>
-          <div className="flex flex-col md:flex-row justify-between items-start p-6 rounded-lg shadow-lg">
+          <div className="flex flex-col md:flex-row justify-between md:items-start md:p-6 rounded-lg shadow-lg">
             <div className="w-full md:w-1/3 flex justify-center mb-6 md:mb-0">
               <img
                 src={movie.poster}
                 alt={movie.title}
-                className="rounded-lg h-[650px] w-auto shadow-lg"
+                className="rounded-lg w-[250px] md:h-[650px] md:w-auto shadow-lg"
               />
             </div>
             <div className="w-full md:w-2/3 md:pl-8 text-left">
-              <h1 className="text-7xl font-Bebas text-[#FF4191] w-fit p-2 bg-[#FFF078]">
+              <h1 className="mx-auto text-5xl md:text-7xl font-Bebas text-[#FF4191] w-fit p-2 bg-[#FFF078]">
                 {movie.title}
               </h1>
               <div className="text-xl m-4">
@@ -129,11 +129,11 @@ function SingleMovie() {
                 <span className="font-semibold">Release Date: </span>
                 <span>{new Date(movie.releaseDate).toDateString()}</span>
               </div>
-              <div className="my-6">
+              <div className="md:my-6">
                 <div
                   ref={playerRef}
                   id="player"
-                  className="rounded-md shadow-lg"
+                  className="rounded-md shadow-lg w-[300px] md:h-[390px] md:w-[640px]"
                 ></div>
               </div>
               <div className="text-lg m-4">
