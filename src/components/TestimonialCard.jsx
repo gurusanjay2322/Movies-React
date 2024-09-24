@@ -5,7 +5,7 @@ function TestimonialCard({ Name, imgSrc, content, bgColor }) {
   const randomStars = Math.floor(Math.random() * 5) + 1;
 
   return (
-    <div className="shadow-lg rounded-lg p-6 max-w-sm mx-auto mb-4" style={{ backgroundColor: bgColor }}>
+    <div className="shadow-lg rounded-lg p-6 max-w-sm mx-auto mb-10 md:mb-4" style={{ backgroundColor: bgColor }}>
       <div className="flex items-center" style={{ backgroundColor: bgColor }}>
         {/* Profile image on the left */}
         <img

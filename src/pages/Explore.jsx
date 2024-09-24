@@ -26,7 +26,7 @@ function Explore() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="p-6">
+    <div className="lg:p-6 py-6 min-h-screen overflow-y-scroll">
       <div className='flex justify-center items-center'>
         <h1 className="text-5xl text-[#FF4191] font-Bebas p-2  font-bold mb-4 bg-[#FFF078]">FIND YOUR PICK</h1>
       </div>

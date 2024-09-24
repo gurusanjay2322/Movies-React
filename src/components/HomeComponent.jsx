@@ -3,7 +3,7 @@ import React from 'react';
 
 function HomeComponent() {
   return (
-    <div className='text-white h-screen w-full flex justify-center items-center'>
+    <div className='text-white h-screen md:w-full flex justify-center items-center'>
       <div className=''>
         <h1 className='flex justify-center text-9xl font-Bebas text-[#FF4191] animatedText'>
           MOVIES

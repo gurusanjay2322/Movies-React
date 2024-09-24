@@ -11,7 +11,7 @@ const sections = [
               Have doubt on a movie? We got you covered.`,
     animationData: ani1,
     reverse: false,
-    lottieSize: { width: "450px", height: "300px" }, // New field for size
+    lottieSize: { width: "450px", height: "300px" },
   },
   {
     title: "Why Movies",
@@ -21,36 +21,28 @@ const sections = [
               recommend what you like.`,
     animationData: ani2,
     reverse: true,
-    lottieSize: { width: "300px", height: "300px" }, // Different size for this Lottie
+    lottieSize: { width: "300px", height: "300px" },
   },
 ];
 
 function AboutSection() {
   return (
-    <div className="h-screen">
+    <div className="h-screen md:w-[80%] mx-auto">
       {sections.map((section, index) => (
         <div
           key={index}
-          style={{
-            display: "flex",
-            flexDirection: section.reverse ? "row-reverse" : "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "20px",
-          }}
-          className="text-white"
+          className={`w-full flex flex-col ${
+            index % 2 == 0 ? "md:flex-row" : "md:flex-row-reverse"
+          } items-center text-white`}
         >
-          <div style={{ flex: 1, padding: "0 20px" }} className="">
-            <h1 className="font-Bebas text-3xl text-[#FF4191] bg-[#FFF078]  w-40 text-center">
+          <div className="md:w-1/2">
+            <h1 className="font-Bebas text-3xl text-[#FF4191] bg-[#FFF078] text-center w-fit p-2">
               {section.title}
             </h1>
-
             <p className="font-mono pt-4 ">{section.content}</p>
           </div>
-          <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-            <div style={section.lottieSize}>
-              <Lottie animationData={section.animationData} />
-            </div>
+          <div id="lottie-div" className="md:w-1/2">
+            <Lottie className="h-64" animationData={section.animationData} />
           </div>
         </div>
       ))}

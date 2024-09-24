@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TestimonialCard from './TestimonialCard';
 import imgPlaceholder from '../assets/Testimonial/hitler.jpg'; // Sample image
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './Styles.css';
 import { Pagination } from 'swiper/modules';
 
 function Testimonials() {
+  const [Mobile, setMobile] = useState(false);
+
   const testimonialsData = [
     {
       Name: "John Doe",
@@ -33,86 +34,42 @@ function Testimonials() {
       content: "It exceeded my expectations in every way possible.",
       imgSrc: imgPlaceholder,
       bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
-    },{
-      Name: "Michael Brown",
-      content: "It exceeded my expectations in every way possible.",
-      imgSrc: imgPlaceholder,
-      bgColor: "#f1f8e9"
     },
+    // Additional testimonials here...
   ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMobile(window.innerWidth < 768);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize); // Update on resize
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Cleanup on unmount
+    };
+  }, []);
 
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
       <div className='font-Bebas text-5xl text-[#FF4191] bg-[#FFF078] w-56 text-center'>
         TESTIMONIALS
       </div>
-      <div className='mt-8 w-full max-w-5xl h-[220px]'>
+      <div className='mt-8 w-full max-w-5xl h-[470px] md:h-[220px] cursor-pointer'>
         <Swiper
           slidesPerView={3}
+          direction={Mobile ? 'vertical' : 'horizontal'} 
           spaceBetween={30}
           pagination={{
             clickable: true,
+            
           }}
           modules={[Pagination]}
           className="mySwiper"
         >
           {testimonialsData.map((testimonial, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className=''>
               <TestimonialCard
                 Name={testimonial.Name}
                 content={testimonial.content}
