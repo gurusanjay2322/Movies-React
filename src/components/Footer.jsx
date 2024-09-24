@@ -11,8 +11,6 @@ function Footer() {
             <h1 className="text-4xl font-bold text-[#FF4191] font-Bebas">MOVIE HUB</h1>
             <p className="mt-2 text-sm">Your Ultimate Destination for Movie Reviews</p>
           </div>
-
-          {/* Column 2: Useful Links */}
           <div className="mb-6 md:mb-0">
             <h2 className="text-lg font-semibold mb-3 text-[#FFF078]">Useful Links</h2>
             <ul>
@@ -30,8 +28,6 @@ function Footer() {
               </li>
             </ul>
           </div>
-
-          {/* Column 3: Follow Us */}
           <div className="mb-6 md:mb-0">
             <h2 className="text-lg font-semibold mb-3 text-[#FFF078]">Follow Us</h2>
             <div className="flex space-x-4">
@@ -46,8 +42,6 @@ function Footer() {
               </a>
             </div>
           </div>
-
-          {/* Column 4: Contact Info */}
           <div>
             <h2 className="text-lg font-semibold mb-3 text-[#FFF078]">Contact Info</h2>
             <ul>
@@ -57,8 +51,6 @@ function Footer() {
             </ul>
           </div>
         </div>
-
-        {/* Footer Bottom */}
         <div className="mt-8 text-center border-t border-gray-700 pt-4">
           <p className="text-sm">&copy; 2024 Movie Hub. All rights reserved.</p>
         </div>
