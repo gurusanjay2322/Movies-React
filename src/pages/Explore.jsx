@@ -9,7 +9,7 @@ function Explore() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/movies');
+      const response = await axios.get('https://movies-spring-ewi3.onrender.com/api/v1/movies');
       setData(response.data); 
       setLoading(false);
     } catch (err) {

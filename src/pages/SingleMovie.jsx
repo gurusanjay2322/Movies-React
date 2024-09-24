@@ -16,7 +16,7 @@ function SingleMovie() {
     const fetchMovie = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/v1/movies/${imdbId}`
+          `https://movies-spring-ewi3.onrender.com/api/v1/movies/${imdbId}`
         );
         setMovie(response.data);
         setLoading(false);
@@ -86,14 +86,14 @@ function SingleMovie() {
     }
     setSubmittingReview(true);
     try {
-      await axios.post("http://localhost:8080/api/v1/movies/reviews", {
+      await axios.post("https://movies-spring-ewi3.onrender.com/api/v1/movies/reviews", {
         reviewBody: reviewBody,
         imdbId: imdbId,
       });
       setReviewBody("");
       setSubmittingReview(false);
       const response = await axios.get(
-        `http://localhost:8080/api/v1/movies/${imdbId}`
+        `https://movies-spring-ewi3.onrender.com/api/v1/movies/${imdbId}`
       );
       setMovie(response.data);
     } catch (err) {

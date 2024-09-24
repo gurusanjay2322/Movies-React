@@ -4,9 +4,7 @@ function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 ">
       <div className=" mx-auto px-4">
-        {/* Footer Top */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-          {/* Column 1: Logo & Tagline */}
           <div className="mb-6 md:mb-0">
             <h1 className="text-4xl font-bold text-[#FF4191] font-Bebas">MOVIE HUB</h1>
             <p className="mt-2 text-sm">Your Ultimate Destination for Movie Reviews</p>
