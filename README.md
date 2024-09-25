@@ -1,8 +1,20 @@
-# React + Vite
+# gsMovies 🎥🍿
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+gsMovies is a modern, responsive React web application that allows users to browse movies and read or write reviews. It provides detailed information about each movie, including cast, crew, synopsis, and user reviews. The app leverages various third-party APIs to fetch up-to-date movie data and reviews.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Browse Popular Movies**: Discover top trending and popular movies.
+- **Detailed Movie Pages**: View detailed information such as cast, crew, synopsis, and more.
+- **User Reviews**: Read reviews written by other users or add your own.
+- **Responsive Design**: Fully responsive design for an optimal viewing experience across all devices.
+
+## Tech Stack
+
+- **Frontend**: React, Tailwind CSS
+- **State Management**: React Context API / Redux
+- **Routing**: React Router
+- **API**: A springboot application integrated with a MongoDB Database
+- **Deployment**: Vercel
+
+
